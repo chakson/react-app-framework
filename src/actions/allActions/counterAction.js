@@ -23,12 +23,10 @@ const ACTIONS = {
 					console.log(URL);
 					return response.json();
 				});
-				console.log('success');
 				// success
 				dispatch(ACTIONS.increase());
 			} catch (e) {
 				// error
-				console.log('error');
 				dispatch(ACTIONS.decrease());
 			}
 		}

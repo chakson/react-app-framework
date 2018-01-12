@@ -8,8 +8,8 @@ import { AppContainer } from "react-hot-loader";
 import ROOT from "./router";
 
 // public styles go here
-import "../static/common.scss";
-import "../static/normalize.scss";
+// import "../static/common.less";
+// import "../static/normalize.less";
 
 const render = (Component) => {
   ReactDOM.render(

@@ -1,13 +1,13 @@
-const path = require("path");
-const webpack = require("webpack")
-const webpackMerge = require("webpack-merge");
-const OpenBrowserPlugin = require("open-browser-webpack-plugin");
-const autoprefixer = require("autoprefixer");
-const precss = require("precss");
+const path = require('path');
+const webpack = require('webpack')
+const webpackMerge = require('webpack-merge');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
-const baseConfig = require("./webpack.base.js");
-const config = require("./config");
-const port = config.port;
+const baseConfig = require('./webpack.base.js');
+const config = require('./config');
 
 module.exports = function (env) {
 	console.log(`
@@ -17,15 +17,18 @@ module.exports = function (env) {
 	`);
 	return webpackMerge(baseConfig(env), {
 		entry: [
-			"react-hot-loader/patch",
-			"webpack-dev-server/client?http://localhost:" + port,
-			"webpack/hot/only-dev-server",
-			path.resolve(__dirname, "../src/main.js"),
+			'react-hot-loader/patch',
+			'webpack-dev-server/client?http://localhost:' + config.port,
+			'webpack/hot/only-dev-server',
+			config.appMainJs,
 		],
-		devtool: "cheap-module-source-map",
+		devtool: 'cheap-module-source-map',
 		plugins: [
 			new webpack.HotModuleReplacementPlugin(),
-			new OpenBrowserPlugin({ url: "http://localhost:" + port }),
+			new OpenBrowserPlugin({ url: 'http://localhost:' + config.port }),
+			new HTMLWebpackPlugin({
+				template: config.appHtml
+			}),
 			new webpack.LoaderOptionsPlugin({
 				options: {
 					postcss() {

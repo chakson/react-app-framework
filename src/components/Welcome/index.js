@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import style from "./style.scss";
+import style from "./style.less";
 
 export default class App extends Component {
 	render() {
